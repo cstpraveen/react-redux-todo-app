@@ -47,9 +47,9 @@ class Books extends Component {
 
     return (
       <div className="books-container">
-        <i onClick={() => this.dispatchAction("EDIT")} className="icon fa fa-pencil" aria-hidden="true">Edit</i> 
-        <i onClick={() => this.dispatchAction("TRASH")} className="icon fa fa-trash" aria-hidden="true">Delete</i> 
-        <i onClick={() => this.dispatchAction("PLUS")} className="icon fa fa-plus" aria-hidden="true">Add</i> 
+        <button onClick={() => this.dispatchAction("EDIT")}>Edit</button> 
+        <button onClick={() => this.dispatchAction("TRASH")}>Delete</button> 
+        <button onClick={() => this.dispatchAction("PLUS")}>Add</button> 
         {bookItems}
       </div>
     )
