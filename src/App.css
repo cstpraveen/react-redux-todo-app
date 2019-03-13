@@ -22,27 +22,6 @@
   font-size: large;
 }
 
-/* Books CSS starts here */
-.book-card {
-  position: relative;
-  margin: 20px;
-}
-
-.icon {
-  cursor: pointer;
-}
-
-.books-container {
-  /*display: flex;*/
-  flex-direction: "row";
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  height: 100vh;
-}
-/* Books CSS ends here */
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
