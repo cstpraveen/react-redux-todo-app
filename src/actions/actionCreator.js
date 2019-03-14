@@ -18,11 +18,6 @@ export const toggleTodo = (id) => ({
     id: id
 })
 
-export const inProgressTodo = (id) => ({
-    type: INPROGRESS_TODO,
-    id: id
-})
-
 export const setVisibilityFilter = filter => ({
   type: SET_VISIBILITY_FILTER,
   filter

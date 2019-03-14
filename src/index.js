@@ -6,7 +6,12 @@ import MainReducer from './reducers/MainReducer'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = compose(window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore)(MainReducer)
+const customMiddleWare = store => next => action => {
+    console.log("Middleware triggered:", action);
+    next(action);
+}
+  
+const store = compose(window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore)(MainReducer, applyMiddleware(customMiddleWare))
 
 ReactDOM.render(<Provider store={store}>
 <App />

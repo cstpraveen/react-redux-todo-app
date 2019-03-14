@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import {
   deleteTodo,
   toggleTodo,
-  inProgressTodo,
   setVisibilityFilter
 } from "../actions/actionCreator";
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE, INPROGRESS_TODO } from "../actions/actionsTypes";
@@ -20,12 +19,6 @@ class Table extends Component {
               onClick={() => this.props.setVisibilityFilter(SHOW_ALL)}
             >
              All
-            </li>
-            <li
-               className={"breadcrumb-item "+ (this.props.visibilityFilter === INPROGRESS_TODO ? 'active' : '') }
-              onClick={() => this.props.setVisibilityFilter(INPROGRESS_TODO)}
-            >
-              In Progress
             </li>
             <li
                className={"breadcrumb-item "+ (this.props.visibilityFilter === SHOW_COMPLETED ? 'active' : '') }
@@ -103,14 +96,13 @@ class Table extends Component {
 }
 
 const getVisibleTodos = (todos, filter) => {
+  console.log(todos)
   switch (filter) {
     case SHOW_ALL:
       return todos;
     case SHOW_COMPLETED:
-      return todos.filter(t => !t.completed);
+      return todos.filter(t => t.completed);
     case SHOW_ACTIVE:
-      return todos.filter(t => !t.completed);
-    case INPROGRESS_TODO:
       return todos.filter(t => !t.completed);
     default:
       throw new Error("Unknown filter: " + filter);
@@ -128,7 +120,6 @@ const mapDispatchToProps = dispatch => {
     {
       deleteTodo,
       toggleTodo,
-      inProgressTodo,
       setVisibilityFilter
     },
     dispatch
