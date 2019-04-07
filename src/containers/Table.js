@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   deleteTodo,
   toggleTodo,
   setVisibilityFilter
 } from "../actions/actionCreator";
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE, INPROGRESS_TODO } from "../actions/actionsTypes";
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../actions/actionsTypes";
 import { bindActionCreators } from "redux";
 
 class Table extends Component {
@@ -53,7 +54,7 @@ class Table extends Component {
                       textDecoration: todo.completed ? "line-through" : "none"
                     }}
                   >
-                    {todo.text} {todo.completed === true ? "(completed)" : ""}
+                    <Link to={'/' + todo.id}>{todo.text}</Link> {todo.completed === true ? "(completed)" : ""}
                   </td>
                   <td>
                     <span
@@ -96,7 +97,6 @@ class Table extends Component {
 }
 
 const getVisibleTodos = (todos, filter) => {
-  console.log(todos)
   switch (filter) {
     case SHOW_ALL:
       return todos;

@@ -22,8 +22,8 @@ class CreateTodo extends Component {
         
         switch(fieldName) {
             case 'todotext':
-            todotextValid = value.length >= 6;
-            fieldValidationErrors.password = todotextValid ? '': ' is too short';
+            todotextValid = value.length >= 2;
+            fieldValidationErrors.todotext = todotextValid ? '': ' is too short';
             break;
             default:
             break;
@@ -62,7 +62,7 @@ class CreateTodo extends Component {
                                     className="form-control" 
                                     id="inputEmail3" 
                                     placeholder="add todo here"
-                                    autocomplete="off" />
+                                    autoComplete="off" />
                                 
                                 <button 
                                     type="button" 
