@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   deleteTodo,
   toggleTodo,
-  inProgressTodo,
   setVisibilityFilter
 } from "../actions/actionCreator";
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE, INPROGRESS_TODO } from "../actions/actionsTypes";
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../actions/actionsTypes";
 import { bindActionCreators } from "redux";
 
 class Table extends Component {
@@ -20,12 +20,6 @@ class Table extends Component {
               onClick={() => this.props.setVisibilityFilter(SHOW_ALL)}
             >
              All
-            </li>
-            <li
-               className={"breadcrumb-item "+ (this.props.visibilityFilter === INPROGRESS_TODO ? 'active' : '') }
-              onClick={() => this.props.setVisibilityFilter(INPROGRESS_TODO)}
-            >
-              In Progress
             </li>
             <li
                className={"breadcrumb-item "+ (this.props.visibilityFilter === SHOW_COMPLETED ? 'active' : '') }
@@ -60,7 +54,7 @@ class Table extends Component {
                       textDecoration: todo.completed ? "line-through" : "none"
                     }}
                   >
-                    {todo.text} {todo.completed === true ? "(completed)" : ""}
+                    <Link to={'/' + todo.id}>{todo.text}</Link> {todo.completed === true ? "(completed)" : ""}
                   </td>
                   <td>
                     <span
@@ -107,10 +101,8 @@ const getVisibleTodos = (todos, filter) => {
     case SHOW_ALL:
       return todos;
     case SHOW_COMPLETED:
-      return todos.filter(t => !t.completed);
+      return todos.filter(t => t.completed);
     case SHOW_ACTIVE:
-      return todos.filter(t => !t.completed);
-    case INPROGRESS_TODO:
       return todos.filter(t => !t.completed);
     default:
       throw new Error("Unknown filter: " + filter);
@@ -128,7 +120,6 @@ const mapDispatchToProps = dispatch => {
     {
       deleteTodo,
       toggleTodo,
-      inProgressTodo,
       setVisibilityFilter
     },
     dispatch

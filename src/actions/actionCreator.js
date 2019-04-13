@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, INPROGRESS_TODO } from './actionsTypes'
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from './actionsTypes'
 
 let TodoId = 2
 
@@ -15,11 +15,6 @@ export const deleteTodo = (id) => ({
 
 export const toggleTodo = (id) => ({
     type: TOGGLE_TODO,
-    id: id
-})
-
-export const inProgressTodo = (id) => ({
-    type: INPROGRESS_TODO,
     id: id
 })
 
