@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from './actionsTypes'
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, INITIAL_DATA } from './actionsTypes'
 
 let TodoId = 2
 
@@ -21,4 +21,9 @@ export const toggleTodo = (id) => ({
 export const setVisibilityFilter = filter => ({
   type: SET_VISIBILITY_FILTER,
   filter
+})
+
+export const loadAllData = () => ({
+    type: INITIAL_DATA,
+    data: {},
 })

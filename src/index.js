@@ -18,10 +18,10 @@ const store = compose(window.devToolsExtension ? window.devToolsExtension() : f 
 ReactDOM.render(<Provider store={store}>
     <BrowserRouter>
         {/* <App /> */}
-        <div>
+        <React.Fragment>
             <Route exact path="/" component={App} />
             <Route path="/:id" component={Todo} />
-        </div>
+        </React.Fragment>
     </BrowserRouter>
 </Provider>
 , document.getElementById('root'));

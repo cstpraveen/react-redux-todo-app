@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 import {
   deleteTodo,
   toggleTodo,
-  setVisibilityFilter
+  setVisibilityFilter,
+  loadAllData
 } from "../actions/actionCreator";
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../actions/actionsTypes";
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE, INITIAL_DATA } from "../actions/actionsTypes";
 import { bindActionCreators } from "redux";
 
 class Table extends Component {
+  componentDidMount() {
+    this.props.loadAllData(INITIAL_DATA)
+  }
+
   render() {
     return (
       <div className="col-lg-10 offset-lg-1 col-md-10 col-sm-12 col-xs-12">
@@ -98,6 +103,8 @@ class Table extends Component {
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
+    case INITIAL_DATA:
+      return todos;
     case SHOW_ALL:
       return todos;
     case SHOW_COMPLETED:
@@ -110,7 +117,8 @@ const getVisibleTodos = (todos, filter) => {
 };
 
 const mapStateToProps = state => {
-  return { todos: getVisibleTodos(state.todos, state.visibilityFilter),
+  return { 
+    todos: getVisibleTodos(state.todos, state.visibilityFilter),
     visibilityFilter: state.visibilityFilter
  };
 };
@@ -120,7 +128,8 @@ const mapDispatchToProps = dispatch => {
     {
       deleteTodo,
       toggleTodo,
-      setVisibilityFilter
+      setVisibilityFilter,
+      loadAllData
     },
     dispatch
   );
